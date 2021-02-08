@@ -41,7 +41,10 @@ class BST {
 	// Complete this class
     public:
     BinaryTreeNode<int>* root;
-    
+    BST()
+    {
+      root=NULL;
+    }
     private:
     bool search(int key,BinaryTreeNode<int>* node){
         if(node==NULL)
