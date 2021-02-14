@@ -54,6 +54,27 @@ void bfs(int **edges,int n,int start,bool *visited){
   cout<<endl;
 }
 
+/*
+BFS traversal of graph for disconnected graph 
+
+void BFS(int **edges,int n)
+{
+   bool *visited=new bool[n];
+  for(int i=0;i<n;i++)
+  {
+    visited[i]=0;
+  }
+  
+  for(int i=0;i<n;i++)
+  {
+     if(visited[i]==0)
+     {
+        bfs(edges,n,i,visited);
+     }
+  }
+}
+
+*/
 int main() {
     int V, E;
     cin >> V >> E;
