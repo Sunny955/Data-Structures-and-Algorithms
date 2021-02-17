@@ -27,13 +27,14 @@ Sample Output :
  */
 
 
-void initialize(bool **visited,int N,int M){
+// No need to intialise the visited 2-d array as we marked visited[i][j]=false when there is no match in our searching 2-d array
+// void initialize(bool **visited,int N,int M){
     
-    for(int i=0;i<N;i++){
-        for(int j=0;j<M;j++)
-            visited[i][j]=false;
-    }
-}
+//     for(int i=0;i<N;i++){
+//         for(int j=0;j<M;j++)
+//             visited[i][j]=false;
+//     }
+// }
 
 
 bool dfs(char Graph[][MAXN],char c[],int i,int j,int N,int M,bool ** visited){
@@ -83,20 +84,23 @@ int solve(char Graph[][MAXN],int N, int M)
     bool **visited=new bool*[N];
     for(int i=0;i<N;i++){
         visited[i]=new bool[M];
+	    for(int j=0;j<M;j++)
+	    {
+	    	visited[i][j]=false;
+	    }
     }
     
-    initialize(visited,N,M);
-    for(int i=0;i<N;i++){
-        
+    bool ans=false;
+    for(int i=0;i<N;i++){  
         for(int j=0;j<M;j++){
-            bool ans=false;
-            if(Graph[i][j]=='C'){
+            if(Graph[i][j]=='C')
+	    {
                 ans=dfs(Graph,c+1,i,j,N,M,visited);
                 if(ans)
-                    return 1;
-                
-                initialize(visited,N,M);
-                
+		{
+			return 1;
+			break;
+		}
             }
         }
     }
