@@ -35,17 +35,27 @@ int solve(int n,vector<int>A){
   */
     if(n==1)
         return A[0];
-    vector <int> dp(1001);
+    vector <int> dp(1001)();
     
-    unordered_map<int,int> f;
+   vector<int> freq(1001,0);
+    int max_num=INT_MIN;
     for(int i=0;i<n;i++)
-        f[A[i]]+=1;
+    {
+        freq[A[i]]++;
+        if(A[i]>max_num)
+        {
+            max_num=A[i];
+        }
+    }
     
-    for(int i=1;i<=1000;i++){
+    dp[0]=0;
+    dp[1]=freq[1];
+    
+    for(int i=2;i<=max_num;i++){
         dp[i]=max(dp[i-2]+i*f[i],dp[i-1]);
     }
     
-    return dp[1000];
+    return dp[max_num];
     
 }
 
